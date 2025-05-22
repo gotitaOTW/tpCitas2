@@ -1,11 +1,11 @@
 import React from "react";
 
-function MostrarCitas(props){
-  let citasTotales=<></>;
-  props.citas.forEach(cita =>{
-    citasTotales+=props.traerCita(cita);
-  });
-    return citasTotales;
+function MostrarCitas(props) {
+  return props.citas.map(cita => (
+    <div key={cita.id}>
+      {props.traerCita(cita)}
+    </div>
+  ));
 }
 
 export default MostrarCitas;

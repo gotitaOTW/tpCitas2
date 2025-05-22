@@ -7,10 +7,11 @@ import MostrarCitas from './assets/MostrarCitas.jsx'
 import MostrarCita from './assets/mostrarCita.jsx'
 
 function App() {
-  let citas = [];
+  const [citas,setCitas]=useState([]);
+
   const agregarCitaAlListado = (cita) =>{
-    citas.push(cita);
-    console.log("ultima cita: "+cita.mascota)
+    setCitas([...citas, cita]);
+    console.log("última mascota: " + cita.mascota);
   }
 
 
@@ -22,7 +23,8 @@ function App() {
         <div className="row">
           <div className="one-half column">
             <MostrarForm usoLosDatos={agregarCitaAlListado}  inputText1="Nombre mascota" inputText2="Nombre dueño" inputText3="Fecha" inputText4="Hora" inputText5="Síntomas" submit="agendar cita"/> 
-           </div>
+            <p id="mensajeError"></p>
+          </div>
           <div className="one-half column">
             <h2>Citas</h2>
             <MostrarCitas citas={citas} traerCita={MostrarCita}/>

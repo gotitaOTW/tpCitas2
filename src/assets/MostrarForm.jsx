@@ -1,11 +1,9 @@
-//queda arreglar el problema de ejecución: jessie, gpt o debugear. entendé por donde viene el error primero.
-
-
-
 import React, { useState } from "react";
 //import { useState } from "react";
 
 function MostrarForm(props) {
+    const[nombre,setNombre]=useState("");
+
     const [campos, SetCampos]=useState({
         mascota:null,
         duenio:null,
@@ -26,8 +24,8 @@ function MostrarForm(props) {
           return todosValidos;
     }
 
-    const validarForm = (e) =>{
-        e.preventDefault;
+    const validarForm = (event) =>{
+        event.preventDefault;
         if(!validarCampos){//algo mal ingresado
             document.getElementById("mensajeError").textContent="Todos los ingresos deben ser válidos";
         }else{
@@ -36,12 +34,15 @@ function MostrarForm(props) {
         }
     }
 
-    const validarCampo = (nombre,contenido) => SetCampos({...campos,[nombre]:contenido})
+    const validarCampo = (nombre, contenido = null) => {
+        SetCampos({ ...campos, [nombre]: contenido });
+        console.log(`${campos.duenio} trae a la mascota ${campos.mascota} el dia ${campos.fecha} a las ${campos.hora} por sus síntomas: ${campos.sintomas}`);
+    };
+    
 
     const validarTexto=(event)=>{
         evento=event.target;
         let nombre=evento.name;
-        console.log(nombre);
 
         if(evento.value.trim()!=""){
             validarCampo(nombre,evento.value);//guardo el valor si esta bien
